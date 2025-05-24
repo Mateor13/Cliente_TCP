@@ -4,8 +4,7 @@ import cliente.tcp.cliente.clase.Cliente;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
 public class Registro extends JFrame{
     private JPanel Registro;
@@ -36,37 +35,58 @@ public class Registro extends JFrame{
         Registrar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                String respuesta = "";
                 if (nombre.getText().isEmpty()){
                     Resultado.setText("No ha ingresado un nombre");
                 }else {
                     if (ingreso.isSelected()) {
                         try {
-                            Cliente.enviarNombre(nombreTxt, "Ingreso");
+                            respuesta = Cliente.enviarNombre(nombreTxt, "Ingreso");
+                            Resultado.setForeground(Color.GREEN);
+                            Resultado.setText(respuesta);
                         } catch (Exception ex) {
                             throw new RuntimeException(ex);
                         }
                     } else if (salidaAlmuerzo.isSelected()) {
                         try {
-                            Cliente.enviarNombre(nombreTxt, "Almuerzo");
+                            respuesta = Cliente.enviarNombre(nombreTxt, "Almuerzo");
+                            Resultado.setForeground(Color.GREEN);
+                            Resultado.setText(respuesta);
                         } catch (Exception ex) {
                             throw new RuntimeException(ex);
                         }
                     } else if (retornoAlmuerzo.isSelected()) {
                         try {
-                            Cliente.enviarNombre(nombreTxt, "Regreso");
+                           respuesta = Cliente.enviarNombre(nombreTxt, "Regreso");
+                            Resultado.setForeground(Color.GREEN);
+                            Resultado.setText(respuesta);
                         } catch (Exception ex) {
                             throw new RuntimeException(ex);
                         }
                     } else if (salida.isSelected()) {
                         try {
-                            Cliente.enviarNombre(nombreTxt, "Salida");
+                           respuesta = Cliente.enviarNombre(nombreTxt, "Salida");
+                            Resultado.setForeground(Color.GREEN);
+                            Resultado.setText(respuesta);
                         } catch (Exception ex) {
                             throw new RuntimeException(ex);
                         }
                     } else {
                         Resultado.setText("No se ha seleccionado el registro");
+                        Resultado.setForeground(Color.RED);
                     }
                 }
+            }
+        });
+        Registrar.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                Registrar.setBackground(new Color(0, 60, 201));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                Registrar.setBackground(new Color(0, 81, 132));
             }
         });
     }

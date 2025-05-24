@@ -8,7 +8,7 @@ import java.net.Socket;
 
 public class Cliente {
     private static final int puerto = 5000;
-    private static final String IP = "172.31.116.85";
+    private static final String IP = "192.168.100.243";
     public static String enviarNombre(String nombre, String tipo) throws Exception {
         Socket cliente = new Socket(IP, puerto);
         InputStream in = cliente.getInputStream();
